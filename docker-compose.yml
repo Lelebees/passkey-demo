@@ -1,0 +1,27 @@
+services:
+  database:
+    build: ./database
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_APP_NAME: ${DB_APP_NAME}
+      DB_APP_USER: ${DB_APP_USER}
+      DB_APP_PASS: ${DB_APP_PASS}
+    volumes:
+      - "./database/data:/var/data/db"
+  backend:
+    build: ./backend
+    ports:
+      - "9010:9010"
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/${DB_APP_NAME}
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
