@@ -1,0 +1,12 @@
+[submodule "database"]
+	path = database
+	url = https://github.com/Lelebees/postgres
+[submodule "bruno-api"]
+	path = bruno-api
+	url = https://github.com/Lelebees/passkey-demo-api-collection
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/Lelebees/passkey-demo-frontend
+[submodule "backend"]
+	path = backend
+	url = https://github.com/Lelebees/passkey-demo-backend
