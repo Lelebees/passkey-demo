@@ -1,8 +1,6 @@
 services:
   database:
     build: ./database
-    ports:
-      - "15432:5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -13,8 +11,6 @@ services:
       - "./database/data:/var/data/db"
   backend:
     build: ./backend
-    ports:
-      - "9010:9010"
     depends_on:
       - database
     environment:
@@ -22,6 +18,6 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:3000"
+      - "5173:5173"
     depends_on:
       - backend
