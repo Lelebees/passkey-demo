@@ -9,6 +9,8 @@ services:
       DB_APP_PASS: ${DB_APP_PASS}
     volumes:
       - "./database/data:/var/data/db"
+    networks:
+      - passkey-demo-backend
   backend:
     build: ./backend
     depends_on:
@@ -19,9 +21,29 @@ services:
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
       SPRING_DATASOURCE_USERNAME: ${DB_APP_USER}
       SPRING_DATASOURCE_PASSWORD: ${DB_APP_PASS}
+    networks:
+      - passkey-demo-frontend
+      - passkey-demo-backend
   frontend:
     build: ./frontend
     ports:
       - "5173:3000"
     depends_on:
       - backend
+    networks:
+      - passkey-demo-frontend
+  cloudflare:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    restart: unless-stopped
+    networks:
+      - passkey-demo-frontend
+    depends_on:
+      - frontend
+
+networks:
+  passkey-demo-frontend:
+    driver: "bridge"
+  passkey-demo-backend:
