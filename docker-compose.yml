@@ -17,6 +17,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/${DB_APP_NAME}
       JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET}
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      SPRING_DATASOURCE_USERNAME: ${DB_APP_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_APP_PASS}
   frontend:
     build: ./frontend
     ports:
