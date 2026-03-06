@@ -11,6 +11,8 @@ services:
       - "./database/data:/var/data/db"
     networks:
       - passkey-demo-backend
+    ports:
+      - "15432:5432"
   backend:
     build: ./backend
     depends_on:
