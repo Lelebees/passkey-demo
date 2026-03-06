@@ -21,6 +21,8 @@ services:
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
       SPRING_DATASOURCE_USERNAME: ${DB_APP_USER}
       SPRING_DATASOURCE_PASSWORD: ${DB_APP_PASS}
+      WEBAUTHN_ORIGIN_URL: ${WEBAUTHN_ORIGIN_URL}
+      WEBAUTHN_RP_ID: ${WEBAUTHN_RP_ID}
     networks:
       - passkey-demo-frontend
       - passkey-demo-backend
